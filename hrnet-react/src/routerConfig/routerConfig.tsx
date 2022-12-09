@@ -9,7 +9,7 @@ interface RouteI {
 
 export const routesArray:RouteI[] = [
     {
-        path: "/create-employee",
+        path: "/",
         component: <CreateEmployee />
     },
     {
@@ -18,6 +18,6 @@ export const routesArray:RouteI[] = [
     },
     {
         path: "*",
-        component: <Navigate replace to='/create-employee'/>
+        component: <Navigate replace to='/'/>
     }
 ]

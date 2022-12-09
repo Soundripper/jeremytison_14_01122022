@@ -7,6 +7,37 @@
   pointer-events: none;
 }
 
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* App CSS */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+label, p.label, div.label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 10px;
+}
+
+.address {
+  margin-top: 10px;
+}
+
+.react-date-picker__calendar--open{
+  position: absolute
+}
+.react-date-picker__calendar--closed{
+  position: absolute
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
