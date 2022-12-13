@@ -19,6 +19,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
+}
+
+.containerEmployeeList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 95vh;
+  margin : 40px;
+  margin-top: 0;
+}
+.dataTable-header{
+  margin-bottom: 10px;
+}
+.ag-center-cols-container{
+  /* width: 100% !important; */
 }
 
 label, p.label, div.label {
@@ -36,6 +54,13 @@ label, p.label, div.label {
 }
 .react-date-picker__calendar--closed{
   position: absolute
+}
+
+.homeButton{
+  margin-top : 20px;
+}
+.filterField{
+  margin-left: 20px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
