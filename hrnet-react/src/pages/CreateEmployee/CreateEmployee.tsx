@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import InputField from "../../components/InputField/InputField";
-import Select from 'react-select';
 import SelectField from "../../components/SelectField/SelectField";
 import DatePicker from "../../components/DatePicker/DatePicker";
 

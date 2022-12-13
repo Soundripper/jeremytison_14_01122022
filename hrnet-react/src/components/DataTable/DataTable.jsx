@@ -4,7 +4,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { useCallback } from "react";
 import { useRef } from "react";
 
-const DataTable = (props) => {
+const DataTableComp = (props) => {
     const {data} = props;
     const columnDefs = [
         {field: 'make'},
@@ -82,4 +82,4 @@ const DataTable = (props) => {
 
 }
 
-export default DataTable
+export default DataTableComp
