@@ -1,9 +1,36 @@
 import { Link } from "react-router-dom";
 import InputField from "../../components/InputField/InputField";
 import SelectField from "../../components/SelectField/SelectField";
-import DatePicker from "../../components/DatePicker/DatePicker";
+import { useEffect, useState } from "react";
+import DatePickerComponent from "../../components/DatePickerComponent/DatePickerComponent";
 
-const CreateEmployee = () => {    
+
+const CreateEmployee = () => {  
+    const [inputValue, setInputValue] = useState({ firstName:"", lastName:"", birthDate:(new Date()), startDate:(new Date()), street:"", city:"", state:"", zipCode:"", department:"" });
+    const { firstName, lastName, birthDate, startDate, street, city, state, zipCode, department } = inputValue;
+
+    const handleInputChange = (event:any) => {
+        const { name, value, type, selected } = event.target;
+        console.log(type);
+        if (type === 'date'){
+            console.log("date change");
+            setInputValue((prev) => ({
+                ...prev,
+                [selected]: (new Date(value)),
+            }));
+        }
+        else if (type === 'text' || 'number'){
+            setInputValue((prev) => ({
+                ...prev,
+                [name]: value,
+            }));
+        }
+    }
+
+    useEffect (() => {
+        console.log(inputValue);
+    },[inputValue])
+    
     return (
         <>
             <div className="title">
@@ -13,50 +40,69 @@ const CreateEmployee = () => {
                 <Link to={"/employee-list"}>View Current Employees</Link>
                 <h2>Create Employee</h2>
                 <form action="#" id="create-employee">
-                    {/* <label htmlFor="first-name">First Name</label>
-                    <input type="text" id="first-name"></input> */}
-                    <InputField label='First Name' id='firstname' className="label"></InputField>
-
-                    {/* <label htmlFor="last-name">Last Name</label>
-                    <input type="text" id="last-name" ></input> */}
-                    <InputField label='Last Name' id='lastname'></InputField>
+                    <InputField 
+                        type="text"
+                        value={firstName}
+                        label="First Name"
+                        name="firstName"
+                        onChange={handleInputChange}>
+                    </InputField>
+                    
+                    <InputField 
+                        type="text"
+                        value={lastName}
+                        label="Last Name"
+                        name="lastName"
+                        onChange={handleInputChange}>
+                    </InputField>
 
                     {/* <label htmlFor="date-of-birth">Date of Birth</label>
                     <input id="date-of-birth" type="text" ></input> */}
-                    <DatePicker label="Date of Birth" />
+                    <DatePickerComponent
+                        namedField="birthDate"
+                        label="Birth Date"
+                    />
 
                     {/* <label htmlFor="start-date">Start Date</label>
                     <input id="start-date" type="text" ></input> */}
-                    <DatePicker label="Start Date" />
+                    <DatePickerComponent 
+                        namedField="startDate"
+                        label="Start Date"
+                    />
 
                     <fieldset className="address">
                         <legend>Address</legend>
 
-                        {/* <label htmlFor="street">Street</label>
-                        <input id="street" type="text" /> */}
-                        <InputField label='Street' id='street'></InputField>
+                        <InputField 
+                            type="text"
+                            value={street}
+                            label="Street"
+                            name="street"
+                            onChange={handleInputChange}>
+                        </InputField>
 
-                        {/* <label htmlFor="city">City</label>
-                        <input id="city" type="text" /> */}
-                        <InputField label='City' id='city'></InputField>
+                        <InputField 
+                            type="text"
+                            value={city}
+                            label="City"
+                            name="city"
+                            onChange={handleInputChange}>
+                        </InputField>
 
-                        {/* <label htmlFor="state">State</label>
-                        <select name="state" id="state"></select> */}
-                        <SelectField data='states' label='State' />
+                        <SelectField
+                            data='states'
+                            label='State'
+                        />
 
-                        {/* <label htmlFor="zip-code">Zip Code</label>
-                        <input id="zip-code" type="number"></input> */}
-                        <InputField label='Zip Code' id='zip-code'></InputField>
+                        <InputField 
+                            type="number"
+                            value={zipCode}
+                            label="Zip Code"
+                            name="zipCode"
+                            onChange={handleInputChange}>
+                        </InputField>
                     </fieldset>
 
-                    {/* <label htmlFor="department">Department</label>
-                    <select name="department" id="department">
-                        <option>Sales</option>
-                        <option>Marketing</option>
-                        <option>Engineering</option>
-                        <option>Human Resources</option>
-                        <option>Legal</option>
-                    </select> */}
                     <SelectField data='department' label='Department' />
                 </form>
 
