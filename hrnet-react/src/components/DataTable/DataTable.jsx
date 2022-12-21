@@ -16,7 +16,7 @@ const DataTableComp = (props) => {
         {field: 'state'},
         {field: 'zipCode'},
         {field: 'department'},
-      ]
+    ]
 
     const defaultColDef = {
         // set filtering on for all columns

@@ -5,19 +5,17 @@ import { useEffect, useState } from "react";
 import DatePickerComponent from "../../components/DatePickerComponent/DatePickerComponent";
 import { saveUserReducer } from "../../redux/reducer";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const CreateEmployee = () => {  
     const [inputValue, setInputValue] = useState({ firstName:"", lastName:"", birthDate:(new Date()), startDate:(new Date()), street:"", city:"", state:"", zipCode:"", department:"" });
-    // const { firstName, lastName, birthDate, startDate, street, city, state, zipCode, department } = inputValue;
     const dispatch = useDispatch();
 
     const saveEmployee = () => {
         dispatch(saveUserReducer({
             firstName: inputValue.firstName,
             lastName: inputValue.lastName,
-            birthDate: inputValue.birthDate,
-            startDate: inputValue.startDate,
+            birthDate: inputValue.birthDate.toLocaleDateString('en-US'),
+            startDate: inputValue.startDate.toLocaleDateString('en-US'),
             street: inputValue.street,
             city: inputValue.city,
             state: inputValue.state,
@@ -28,40 +26,37 @@ const CreateEmployee = () => {
     }
 
     const handleSelectState = (e:any) => {
-        // console.log(e);
         setInputValue((prev) => ({
             ...prev,
             state: e.value,
         }));
     }
     const handleSelectDepartment = (e:any) => {
-        // console.log(e);
         setInputValue((prev) => ({
             ...prev,
             department: e.value,
         }));
     }
-
+    
     const handleBirthDateChange = (e:any) => {
         setInputValue((prev) => ({
             ...prev,
-            birthDate: e.toLocaleDateString('en-US')
+            birthDate: e
         }));
-}
+    }
     const handleStartDateChange = (e:any) => {
         setInputValue((prev) => ({
             ...prev,
-            startDate: e.toLocaleDateString('en-US')
+            startDate: e
         }));
     }
 
     const handleInputChange = (event:any) => {
-        const { name, value, type, selected } = event.target;
+        const { name, value } = event.target;
             setInputValue((prev) => ({
                 ...prev,
                 [name]: value,
             }));
-        // }
     }
     
     return (
@@ -150,7 +145,7 @@ const CreateEmployee = () => {
                     />
                 </form>
 
-                <button onClick={saveEmployee}>Save</button>
+                <button onClick={saveEmployee} className="saveButton">Save</button>
             </div>
             <div id="confirmation" className="modal">Employee Created!</div>
         </>

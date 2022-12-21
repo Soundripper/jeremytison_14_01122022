@@ -59,6 +59,12 @@ label, p.label, div.label {
 .homeButton{
   margin-top : 20px;
 }
+.saveButton{
+  margin-top : 20px;
+}
+.resetButton{
+  margin-top : 20px;
+}
 .filterField{
   margin-left: 20px;
 }
