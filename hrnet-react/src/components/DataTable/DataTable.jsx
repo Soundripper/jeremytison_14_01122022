@@ -7,15 +7,15 @@ import { useRef } from "react";
 const DataTableComp = (props) => {
     const {data} = props;
     const columnDefs = [
-        {field: 'make'},
-        {field: 'model'},
-        {field: 'price'},
-        {field: 'make'},
-        {field: 'model'},
-        {field: 'price'},
-        {field: 'make'},
-        {field: 'model'},
-        {field: 'price'},
+        {field: 'firstName'},
+        {field: 'lastName'},
+        {field: 'birthDate'},
+        {field: 'startDate'},
+        {field: 'street'},
+        {field: 'city'},
+        {field: 'state'},
+        {field: 'zipCode'},
+        {field: 'department'},
       ]
 
     const defaultColDef = {

@@ -3,14 +3,28 @@ import InputField from "../../components/InputField/InputField";
 import SelectField from "../../components/SelectField/SelectField";
 import { useEffect, useState } from "react";
 import DatePickerComponent from "../../components/DatePickerComponent/DatePickerComponent";
-
+import { saveUserReducer } from "../../redux/reducer";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const CreateEmployee = () => {  
     const [inputValue, setInputValue] = useState({ firstName:"", lastName:"", birthDate:(new Date()), startDate:(new Date()), street:"", city:"", state:"", zipCode:"", department:"" });
     // const { firstName, lastName, birthDate, startDate, street, city, state, zipCode, department } = inputValue;
+    const dispatch = useDispatch();
 
     const saveEmployee = () => {
-
+        dispatch(saveUserReducer({
+            firstName: inputValue.firstName,
+            lastName: inputValue.lastName,
+            birthDate: inputValue.birthDate,
+            startDate: inputValue.startDate,
+            street: inputValue.street,
+            city: inputValue.city,
+            state: inputValue.state,
+            zipCode: inputValue.zipCode,
+            department: inputValue.department,
+            users: []
+        }));
     }
 
     const handleSelectState = (e:any) => {
