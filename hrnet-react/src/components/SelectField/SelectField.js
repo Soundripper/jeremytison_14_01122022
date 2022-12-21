@@ -1,7 +1,7 @@
 import Select from 'react-select';
 import { department } from '../../data/data';
 import { states } from '../../data/data';
-import { useEffect, useState } from 'react';
+// import { useState } from 'react';
 
 const formatStatesFn = (states) => {
       return states.map(({name: label, name: value, ...rest}) => ({
@@ -9,16 +9,7 @@ const formatStatesFn = (states) => {
 }
 
 const SelectField = (props) => {
-    const [value, setSelectedOption] = useState("")
-
-    useEffect (() => {
-        console.log(value.value);
-        localStorage.setItem(props.label, value.value)
-      },[props.label, value])
-    // const handleChange = event => {
-    //     console.log(event.target.value);
-    //     setSelectedOption(event.target.value);
-    //   };
+    // const [value, setSelectedOption] = useState("")
 
     let render
     if (props.data === 'states'){
@@ -26,20 +17,20 @@ const SelectField = (props) => {
         render = <Select
             className="basic-single"
             classNamePrefix="select"
-            name="state"
+            name={props.name}
             options={statesFormated}
-            value={value}
-            onChange={setSelectedOption}
+            value={props.value}
+            onChange={props.onChange}
         />
     }
     if (props.data === 'department'){
         render = <Select
             className="basic-single"
             classNamePrefix="select"
-            name="department"
+            name={props.name}
             options={department}
-            value={value}
-            onChange={setSelectedOption}
+            value={props.value}
+            onChange={props.onChange}
         />
     }
     return (

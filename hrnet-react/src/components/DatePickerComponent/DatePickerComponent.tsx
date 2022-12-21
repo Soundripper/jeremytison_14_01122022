@@ -19,9 +19,9 @@ const DatePickerComponent = (props:any) => {
   //   });
   // }; 
 
-  useEffect (() => {
-    localStorage.setItem(props.namedField, JSON.stringify(date))
-  },[date, props.namedField])
+  // useEffect (() => {
+  //   localStorage.setItem(props.namedField, JSON.stringify(date))
+  // },[date, props.namedField])
 
   return (
     <div> 
@@ -29,6 +29,8 @@ const DatePickerComponent = (props:any) => {
       <DateTimePicker
         value={date}
         onChange={setDate}
+        onClickDay={props.onClickDay}
+        name={props.name}
       />
     </div>
   );

@@ -7,29 +7,48 @@ import DatePickerComponent from "../../components/DatePickerComponent/DatePicker
 
 const CreateEmployee = () => {  
     const [inputValue, setInputValue] = useState({ firstName:"", lastName:"", birthDate:(new Date()), startDate:(new Date()), street:"", city:"", state:"", zipCode:"", department:"" });
-    const { firstName, lastName, birthDate, startDate, street, city, state, zipCode, department } = inputValue;
+    // const { firstName, lastName, birthDate, startDate, street, city, state, zipCode, department } = inputValue;
+
+    const saveEmployee = () => {
+
+    }
+
+    const handleSelectState = (e:any) => {
+        // console.log(e);
+        setInputValue((prev) => ({
+            ...prev,
+            state: e.value,
+        }));
+    }
+    const handleSelectDepartment = (e:any) => {
+        // console.log(e);
+        setInputValue((prev) => ({
+            ...prev,
+            department: e.value,
+        }));
+    }
+
+    const handleBirthDateChange = (e:any) => {
+        setInputValue((prev) => ({
+            ...prev,
+            birthDate: e.toLocaleDateString('en-US')
+        }));
+}
+    const handleStartDateChange = (e:any) => {
+        setInputValue((prev) => ({
+            ...prev,
+            startDate: e.toLocaleDateString('en-US')
+        }));
+    }
 
     const handleInputChange = (event:any) => {
         const { name, value, type, selected } = event.target;
-        console.log(type);
-        if (type === 'date'){
-            console.log("date change");
-            setInputValue((prev) => ({
-                ...prev,
-                [selected]: (new Date(value)),
-            }));
-        }
-        else if (type === 'text' || 'number'){
             setInputValue((prev) => ({
                 ...prev,
                 [name]: value,
             }));
-        }
+        // }
     }
-
-    useEffect (() => {
-        console.log(inputValue);
-    },[inputValue])
     
     return (
         <>
@@ -42,7 +61,7 @@ const CreateEmployee = () => {
                 <form action="#" id="create-employee">
                     <InputField 
                         type="text"
-                        value={firstName}
+                        value={inputValue.firstName}
                         label="First Name"
                         name="firstName"
                         onChange={handleInputChange}>
@@ -50,7 +69,7 @@ const CreateEmployee = () => {
                     
                     <InputField 
                         type="text"
-                        value={lastName}
+                        value={inputValue.lastName}
                         label="Last Name"
                         name="lastName"
                         onChange={handleInputChange}>
@@ -59,15 +78,18 @@ const CreateEmployee = () => {
                     {/* <label htmlFor="date-of-birth">Date of Birth</label>
                     <input id="date-of-birth" type="text" ></input> */}
                     <DatePickerComponent
-                        namedField="birthDate"
+                        name="birthDate"
                         label="Birth Date"
+                        onClickDay={handleBirthDateChange}
+                        // value={inputValue.birthDate}
                     />
 
                     {/* <label htmlFor="start-date">Start Date</label>
                     <input id="start-date" type="text" ></input> */}
                     <DatePickerComponent 
-                        namedField="startDate"
+                        name="startDate"
                         label="Start Date"
+                        onClickDay={handleStartDateChange}
                     />
 
                     <fieldset className="address">
@@ -75,7 +97,7 @@ const CreateEmployee = () => {
 
                         <InputField 
                             type="text"
-                            value={street}
+                            value={inputValue.street}
                             label="Street"
                             name="street"
                             onChange={handleInputChange}>
@@ -83,7 +105,7 @@ const CreateEmployee = () => {
 
                         <InputField 
                             type="text"
-                            value={city}
+                            value={inputValue.city}
                             label="City"
                             name="city"
                             onChange={handleInputChange}>
@@ -92,21 +114,29 @@ const CreateEmployee = () => {
                         <SelectField
                             data='states'
                             label='State'
+                            name="state"
+                            // getOptionValue={inputValue.state}
+                            onChange={handleSelectState}
                         />
 
                         <InputField 
                             type="number"
-                            value={zipCode}
+                            value={inputValue.zipCode}
                             label="Zip Code"
                             name="zipCode"
                             onChange={handleInputChange}>
                         </InputField>
                     </fieldset>
 
-                    <SelectField data='department' label='Department' />
+                    <SelectField
+                        data='department'
+                        name="department"
+                        label='Department' 
+                        onChange={handleSelectDepartment}
+                    />
                 </form>
 
-                {/* <button onClick={saveEmployee()}>Save</button> */}
+                <button onClick={saveEmployee}>Save</button>
             </div>
             <div id="confirmation" className="modal">Employee Created!</div>
         </>
