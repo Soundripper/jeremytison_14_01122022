@@ -9,17 +9,16 @@ const DataTableComp = (props) => {
     const columnDefs = [
         {field: 'firstName'},
         {field: 'lastName'},
-        {field: 'birthDate'},
         {field: 'startDate'},
+        {field: 'department'},
+        {field: 'dateOfBirth'},
         {field: 'street'},
         {field: 'city'},
         {field: 'state'},
         {field: 'zipCode'},
-        {field: 'department'},
     ]
 
     const defaultColDef = {
-        // set filtering on for all columns
         filter: false,
         flex:1,
         resizable: true,

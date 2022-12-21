@@ -7,20 +7,20 @@ import { saveUserReducer } from "../../redux/reducer";
 import { useDispatch } from "react-redux";
 
 const CreateEmployee = () => {  
-    const [inputValue, setInputValue] = useState({ firstName:"", lastName:"", birthDate:(new Date()), startDate:(new Date()), street:"", city:"", state:"", zipCode:"", department:"" });
+    const [inputValue, setInputValue] = useState({ firstName:"", lastName:"", dateOfBirth:(new Date()), startDate:(new Date()), street:"", city:"", state:"", zipCode:"", department:"" });
     const dispatch = useDispatch();
 
     const saveEmployee = () => {
         dispatch(saveUserReducer({
             firstName: inputValue.firstName,
             lastName: inputValue.lastName,
-            birthDate: inputValue.birthDate.toLocaleDateString('en-US'),
             startDate: inputValue.startDate.toLocaleDateString('en-US'),
+            department: inputValue.department,
+            dateOfBirth: inputValue.dateOfBirth.toLocaleDateString('en-US'),
             street: inputValue.street,
             city: inputValue.city,
             state: inputValue.state,
             zipCode: inputValue.zipCode,
-            department: inputValue.department,
             users: []
         }));
     }
@@ -87,8 +87,8 @@ const CreateEmployee = () => {
                     {/* <label htmlFor="date-of-birth">Date of Birth</label>
                     <input id="date-of-birth" type="text" ></input> */}
                     <DatePickerComponent
-                        name="birthDate"
-                        label="Birth Date"
+                        name="dateOfBirth"
+                        label="Date of Birth"
                         onClickDay={handleBirthDateChange}
                         // value={inputValue.birthDate}
                     />
