@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import InputField from "../../components/InputField/InputField";
 import SelectField from "../../components/SelectField/SelectField";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DatePickerComponent from "../../components/DatePickerComponent/DatePickerComponent";
 import { saveUserReducer } from "../../redux/reducer";
 import { useDispatch } from "react-redux";
+import { PopUpComponent } from "../../components/PopUpComponent/PopUpComponent";
 
 const CreateEmployee = () => {  
     const [inputValue, setInputValue] = useState({ firstName:"", lastName:"", dateOfBirth:(new Date()), startDate:(new Date()), street:"", city:"", state:"", zipCode:"", department:"" });
     const dispatch = useDispatch();
 
     const saveEmployee = () => {
+        setOpen(true);
         dispatch(saveUserReducer({
             firstName: inputValue.firstName,
             lastName: inputValue.lastName,
@@ -58,6 +60,8 @@ const CreateEmployee = () => {
                 [name]: value,
             }));
     }
+
+    const [open, setOpen] = useState(false);
     
     return (
         <>
@@ -144,8 +148,13 @@ const CreateEmployee = () => {
                         onChange={handleSelectDepartment}
                     />
                 </form>
-
-                <button onClick={saveEmployee} className="saveButton">Save</button>
+                <button 
+                // onClick={{saveEmployee(); setOpen(true);}} 
+                onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => saveEmployee()}
+                className="saveButton">Save</button>
+                <div>
+                    {open ? <PopUpComponent text="Employee Created!" closePopup={() => setOpen(false)} /> : null}
+                </div>
             </div>
             <div id="confirmation" className="modal">Employee Created!</div>
         </>
