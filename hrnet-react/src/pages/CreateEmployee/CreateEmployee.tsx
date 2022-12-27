@@ -23,7 +23,7 @@ const CreateEmployee = () => {
             city: inputValue.city,
             state: inputValue.state,
             zipCode: inputValue.zipCode,
-            users: []
+            // users: []
         }));
     }
 
@@ -156,7 +156,7 @@ const CreateEmployee = () => {
                     {open ? <PopUpComponent text="Employee Created!" closePopup={() => setOpen(false)} /> : null}
                 </div>
             </div>
-            <div id="confirmation" className="modal">Employee Created!</div>
+            {/* <div id="confirmation" className="modal">Employee Created!</div> */}
         </>
     )
 

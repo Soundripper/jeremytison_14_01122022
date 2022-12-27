@@ -1,10 +1,10 @@
 import "../../App.css"
-import { useEffect } from "react"
+// import { useEffect } from "react"
 
 const InputField = (props:any) => {
-    useEffect (() => {
-        localStorage.setItem(props.name, props.value)
-      },[props.name, props.value])
+    // useEffect (() => {
+    //     localStorage.setItem(props.name, props.value)
+    //   },[props.name, props.value])
 
     return (
         <div>
