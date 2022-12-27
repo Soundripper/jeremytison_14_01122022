@@ -1,7 +1,6 @@
 import Select from 'react-select';
 import { department } from '../../data/data';
 import { states } from '../../data/data';
-// import { useState } from 'react';
 
 const formatStatesFn = (states) => {
       return states.map(({name: label, name: value, ...rest}) => ({
@@ -9,7 +8,6 @@ const formatStatesFn = (states) => {
 }
 
 const SelectField = (props) => {
-    // const [value, setSelectedOption] = useState("")
 
     let render
     if (props.data === 'states'){

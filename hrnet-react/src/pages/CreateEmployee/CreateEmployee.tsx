@@ -23,42 +23,14 @@ const CreateEmployee = () => {
             city: inputValue.city,
             state: inputValue.state,
             zipCode: inputValue.zipCode,
-            // users: []
         }));
     }
 
-    const handleSelectState = (e:any) => {
+    const handleChange = (name:any, value:any) => {
         setInputValue((prev) => ({
             ...prev,
-            state: e.value,
+            [name]: value
         }));
-    }
-    const handleSelectDepartment = (e:any) => {
-        setInputValue((prev) => ({
-            ...prev,
-            department: e.value,
-        }));
-    }
-    
-    const handleBirthDateChange = (e:any) => {
-        setInputValue((prev) => ({
-            ...prev,
-            birthDate: e
-        }));
-    }
-    const handleStartDateChange = (e:any) => {
-        setInputValue((prev) => ({
-            ...prev,
-            startDate: e
-        }));
-    }
-
-    const handleInputChange = (event:any) => {
-        const { name, value } = event.target;
-            setInputValue((prev) => ({
-                ...prev,
-                [name]: value,
-            }));
     }
 
     const [open, setOpen] = useState(false);
@@ -77,7 +49,8 @@ const CreateEmployee = () => {
                         value={inputValue.firstName}
                         label="First Name"
                         name="firstName"
-                        onChange={handleInputChange}>
+                        onChange={(e:any) => handleChange('firstName', e.target.value)}
+                        >
                     </InputField>
                     
                     <InputField 
@@ -85,24 +58,20 @@ const CreateEmployee = () => {
                         value={inputValue.lastName}
                         label="Last Name"
                         name="lastName"
-                        onChange={handleInputChange}>
+                        onChange={(e:any) => handleChange('lastName', e.target.value)}
+                        >
                     </InputField>
 
-                    {/* <label htmlFor="date-of-birth">Date of Birth</label>
-                    <input id="date-of-birth" type="text" ></input> */}
                     <DatePickerComponent
                         name="dateOfBirth"
                         label="Date of Birth"
-                        onClickDay={handleBirthDateChange}
-                        // value={inputValue.birthDate}
+                        onClickDay={(e:any) => handleChange('dateOfBirth', e)}
                     />
 
-                    {/* <label htmlFor="start-date">Start Date</label>
-                    <input id="start-date" type="text" ></input> */}
                     <DatePickerComponent 
                         name="startDate"
                         label="Start Date"
-                        onClickDay={handleStartDateChange}
+                        onClickDay={(e:any) => handleChange('startDate', e)}
                     />
 
                     <fieldset className="address">
@@ -113,7 +82,8 @@ const CreateEmployee = () => {
                             value={inputValue.street}
                             label="Street"
                             name="street"
-                            onChange={handleInputChange}>
+                            onChange={(e:any) => handleChange('street', e.target.value)}
+                            >
                         </InputField>
 
                         <InputField 
@@ -121,15 +91,15 @@ const CreateEmployee = () => {
                             value={inputValue.city}
                             label="City"
                             name="city"
-                            onChange={handleInputChange}>
+                            onChange={(e:any) => handleChange('city', e.target.value)}
+                            >
                         </InputField>
 
                         <SelectField
                             data='states'
                             label='State'
                             name="state"
-                            // getOptionValue={inputValue.state}
-                            onChange={handleSelectState}
+                            onChange={(e:any) => handleChange('state', e.value)}
                         />
 
                         <InputField 
@@ -137,7 +107,8 @@ const CreateEmployee = () => {
                             value={inputValue.zipCode}
                             label="Zip Code"
                             name="zipCode"
-                            onChange={handleInputChange}>
+                            onChange={(e:any) => handleChange('zipCode', e.target.value)}
+                            >
                         </InputField>
                     </fieldset>
 
@@ -145,18 +116,16 @@ const CreateEmployee = () => {
                         data='department'
                         name="department"
                         label='Department' 
-                        onChange={handleSelectDepartment}
+                        onChange={(e:any) => handleChange('department', e.value)}
                     />
                 </form>
                 <button 
-                // onClick={{saveEmployee(); setOpen(true);}} 
                 onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => saveEmployee()}
                 className="saveButton">Save</button>
                 <div>
                     {open ? <PopUpComponent text="Employee Created!" closePopup={() => setOpen(false)} /> : null}
                 </div>
             </div>
-            {/* <div id="confirmation" className="modal">Employee Created!</div> */}
         </>
     )
 

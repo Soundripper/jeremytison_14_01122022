@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DateTimePicker from 'react-date-picker'
 
 const DatePickerComponent = (props:any) => {

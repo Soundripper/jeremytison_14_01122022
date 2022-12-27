@@ -63,7 +63,6 @@ const DataTableComp = (props) => {
                 />
             </div>
 
-            {/* <table id="employee-table" className="display"></table> */}
             <div className="ag-theme-alpine" style={gridStyle}>
                 <AgGridReact
                     ref={gridRef}
@@ -75,7 +74,6 @@ const DataTableComp = (props) => {
                     paginationPageSize={10}
                 />
             </div>
-            {/* <a href="index.html">Home</a> */}
         </>
     )
 
