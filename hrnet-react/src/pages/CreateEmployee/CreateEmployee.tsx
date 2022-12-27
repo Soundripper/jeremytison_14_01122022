@@ -6,24 +6,35 @@ import DatePickerComponent from "../../components/DatePickerComponent/DatePicker
 import { saveUserReducer } from "../../redux/reducer";
 import { useDispatch } from "react-redux";
 import { PopUpComponent } from "../../components/PopUpComponent/PopUpComponent";
+import { validName, validZipCode } from "../../utils/regex";
 
 const CreateEmployee = () => {  
     const [inputValue, setInputValue] = useState({ firstName:"", lastName:"", dateOfBirth:(new Date()), startDate:(new Date()), street:"", city:"", state:"", zipCode:"", department:"" });
     const dispatch = useDispatch();
+    const [error, setError] = useState(false)
 
     const saveEmployee = () => {
-        setOpen(true);
-        dispatch(saveUserReducer({
-            firstName: inputValue.firstName,
-            lastName: inputValue.lastName,
-            startDate: inputValue.startDate.toLocaleDateString('en-US'),
-            department: inputValue.department,
-            dateOfBirth: inputValue.dateOfBirth.toLocaleDateString('en-US'),
-            street: inputValue.street,
-            city: inputValue.city,
-            state: inputValue.state,
-            zipCode: inputValue.zipCode,
-        }));
+        if (!validName.test(inputValue.firstName) || !validName.test(inputValue.lastName) || !validName.test(inputValue.street) || !validName.test(inputValue.city) || (inputValue.state === "") || (inputValue.department === "") || !validZipCode.test(inputValue.zipCode) ) {
+            setError(true);
+            console.log(error);
+            return;
+        }
+        else {
+            setError(false);
+            setOpen(true);
+            dispatch(saveUserReducer({
+                firstName: inputValue.firstName,
+                lastName: inputValue.lastName,
+                startDate: inputValue.startDate.toLocaleDateString('en-US'),
+                department: inputValue.department,
+                dateOfBirth: inputValue.dateOfBirth.toLocaleDateString('en-US'),
+                street: inputValue.street,
+                city: inputValue.city,
+                state: inputValue.state,
+                zipCode: inputValue.zipCode,
+            }));
+        }
+        
     }
 
     const handleChange = (name:any, value:any) => {
@@ -124,6 +135,9 @@ const CreateEmployee = () => {
                 className="saveButton">Save</button>
                 <div>
                     {open ? <PopUpComponent text="Employee Created!" closePopup={() => setOpen(false)} /> : null}
+                </div>
+                <div>
+                    {error ? <PopUpComponent text="Verify your entries!" closePopup={() => setError(false)} /> : null}
                 </div>
             </div>
         </>
