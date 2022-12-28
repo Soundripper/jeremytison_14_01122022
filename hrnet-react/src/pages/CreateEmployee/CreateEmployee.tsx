@@ -16,7 +16,6 @@ const CreateEmployee = () => {
     const saveEmployee = () => {
         if (!validName.test(inputValue.firstName) || !validName.test(inputValue.lastName) || !validName.test(inputValue.street) || !validName.test(inputValue.city) || (inputValue.state === "") || (inputValue.department === "") || !validZipCode.test(inputValue.zipCode) ) {
             setError(true);
-            console.log(error);
             return;
         }
         else {

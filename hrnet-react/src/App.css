@@ -61,6 +61,7 @@ label, p.label, div.label {
 }
 .saveButton{
   margin-top : 20px;
+  margin-bottom: 30px;
 }
 .resetButton{
   margin-top : 20px;
