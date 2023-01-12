@@ -10,6 +10,9 @@
     display: flex;
     justify-content: center;
 }
+.popup-fade {
+    animation: fadeIn 2s;
+}
 .popup-body {
     position: absolute;
     display: flex;
@@ -32,4 +35,9 @@
 }
 .popClosebutton{
     margin-left: 10px;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }

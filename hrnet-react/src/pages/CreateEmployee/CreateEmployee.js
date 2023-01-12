@@ -1,26 +1,36 @@
 import { Link } from "react-router-dom";
 import InputField from "../../components/InputField/InputField";
 import SelectField from "../../components/SelectField/SelectField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePickerComponent from "../../components/DatePickerComponent/DatePickerComponent";
 import { saveUserReducer } from "../../redux/reducer";
 import { useDispatch } from "react-redux";
-import { PopUpComponent } from "../../components/PopUpComponent/PopUpComponent";
+// import { PopUpModalComponent } from "react-simplemodal-component";
+import PopUpModalComponent from "../../components/PopUpComponent/PopUpComponent";
 import { validName, validZipCode } from "../../utils/regex";
 
 const CreateEmployee = () => {  
     const [inputValue, setInputValue] = useState({ firstName:"", lastName:"", dateOfBirth:(new Date()), startDate:(new Date()), street:"", city:"", state:"", zipCode:"", department:"" });
     const dispatch = useDispatch();
-    const [error, setError] = useState(false)
 
+    const [openModal, setOpenModal] = useState(false);
+    const [modalText, setModalText] = useState("");
+    
+    useEffect (() => {
+        console.log({openModal});
+    }, [openModal])
+    
     const saveEmployee = () => {
+        console.log("Button save pressed");
         if (!validName.test(inputValue.firstName) || !validName.test(inputValue.lastName) || !validName.test(inputValue.street) || !validName.test(inputValue.city) || (inputValue.state === "") || (inputValue.department === "") || !validZipCode.test(inputValue.zipCode) ) {
-            setError(true);
+            setModalText("Verify your entries!");
+            setOpenModal(true);
+            console.log("verify your entries");
             return;
         }
         else {
-            setError(false);
-            setOpen(true);
+            setModalText("Employee created");
+            setOpenModal(true);
             dispatch(saveUserReducer({
                 firstName: inputValue.firstName,
                 lastName: inputValue.lastName,
@@ -36,14 +46,12 @@ const CreateEmployee = () => {
         
     }
 
-    const handleChange = (name:any, value:any) => {
+    const handleChange = (name, value) => {
         setInputValue((prev) => ({
             ...prev,
             [name]: value
         }));
     }
-
-    const [open, setOpen] = useState(false);
     
     return (
         <>
@@ -59,7 +67,7 @@ const CreateEmployee = () => {
                         value={inputValue.firstName}
                         label="First Name"
                         name="firstName"
-                        onChange={(e:any) => handleChange('firstName', e.target.value)}
+                        onChange={(e) => handleChange('firstName', e.target.value)}
                         >
                     </InputField>
                     
@@ -68,20 +76,20 @@ const CreateEmployee = () => {
                         value={inputValue.lastName}
                         label="Last Name"
                         name="lastName"
-                        onChange={(e:any) => handleChange('lastName', e.target.value)}
+                        onChange={(e) => handleChange('lastName', e.target.value)}
                         >
                     </InputField>
 
                     <DatePickerComponent
                         name="dateOfBirth"
                         label="Date of Birth"
-                        onClickDay={(e:any) => handleChange('dateOfBirth', e)}
+                        onClickDay={(e) => handleChange('dateOfBirth', e)}
                     />
 
                     <DatePickerComponent 
                         name="startDate"
                         label="Start Date"
-                        onClickDay={(e:any) => handleChange('startDate', e)}
+                        onClickDay={(e) => handleChange('startDate', e)}
                     />
 
                     <fieldset className="address">
@@ -92,7 +100,7 @@ const CreateEmployee = () => {
                             value={inputValue.street}
                             label="Street"
                             name="street"
-                            onChange={(e:any) => handleChange('street', e.target.value)}
+                            onChange={(e) => handleChange('street', e.target.value)}
                             >
                         </InputField>
 
@@ -101,7 +109,7 @@ const CreateEmployee = () => {
                             value={inputValue.city}
                             label="City"
                             name="city"
-                            onChange={(e:any) => handleChange('city', e.target.value)}
+                            onChange={(e) => handleChange('city', e.target.value)}
                             >
                         </InputField>
 
@@ -109,7 +117,7 @@ const CreateEmployee = () => {
                             data='states'
                             label='State'
                             name="state"
-                            onChange={(e:any) => handleChange('state', e.value)}
+                            onChange={(e) => handleChange('state', e.value)}
                         />
 
                         <InputField 
@@ -117,7 +125,7 @@ const CreateEmployee = () => {
                             value={inputValue.zipCode}
                             label="Zip Code"
                             name="zipCode"
-                            onChange={(e:any) => handleChange('zipCode', e.target.value)}
+                            onChange={(e) => handleChange('zipCode', e.target.value)}
                             >
                         </InputField>
                     </fieldset>
@@ -126,17 +134,14 @@ const CreateEmployee = () => {
                         data='department'
                         name="department"
                         label='Department' 
-                        onChange={(e:any) => handleChange('department', e.value)}
+                        onChange={(e) => handleChange('department', e.value)}
                     />
                 </form>
                 <button 
-                onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => saveEmployee()}
+                onClick={() => saveEmployee()}
                 className="saveButton">Save</button>
                 <div>
-                    {open ? <PopUpComponent text="Employee Created!" closePopup={() => setOpen(false)} /> : null}
-                </div>
-                <div>
-                    {error ? <PopUpComponent text="Verify your entries!" closePopup={() => setError(false)} /> : null}
+                    {openModal ? <PopUpModalComponent useFade={true} openModal={openModal} text={modalText} closePopup={() => setOpenModal(false)} /> : null}
                 </div>
             </div>
         </>
