@@ -10,20 +10,17 @@
     display: flex;
     justify-content: center;
 }
-.popup-fade {
+/* .popup-fade {
     animation: fadeIn 2s;
-}
+} */
 .popup-body {
     position: absolute;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* left: 37%;
-    right: 37%; */
     min-width: 200px;
     max-width: 30%;
-    /* bottom: 80%; */
-    top: 80%;
+    bottom: 20%;
     text-align: center;
     margin: auto;
     padding-left : 13px;
@@ -35,9 +32,10 @@
 }
 .popClosebutton{
     margin-left: 10px;
+    cursor: pointer;
 }
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
-}
+} */

@@ -1,46 +1,31 @@
-import React, { useState } from "react"
-import { useEffect } from "react";
 import "./PopUpComponent.css";
-const PopUpModalComponent = ({ text, useFade = false, openModal, closePopup}) => {
+import useEscape from "./useEscape";
+import styled, { keyframes } from 'styled-components'
 
-  const [openState, setOpenState] = useState(true);
+const fadeAnim = keyframes`
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+`
 
-  useEffect (() => {
-    // setOpenState(openModal)
-    console.log({openModal});
-    // console.log({openState});
-  }, [openModal, openState])
+const Component = styled.div`
+  animation-name: ${fadeAnim};
+  animation-duration: ${props => props.fadeanimduration};
+`
 
-  // useEffect (() => {
-  //       document.addEventListener('keydown', (e) => {
-  //         e.key === 'Escape' && setOpenState(!openModal)
-  //       })
-  //       // return () => {
-  //       //   document.removeEventListener('keydown', (e) => e)
-  //       // }
-  // }, [openModal])
+const PopUpModalComponent = ({ text, openModal, closePopup, myPopupBodyStyle, myPopupContainerStyle, myPopupCloseButtonStyle, fadeanimduration}) => {
+  useEscape(closePopup);
 
-  // const closePopup = () => {
-  //   setOpenState(!openState)
-  //   console.log("close");
-  // }
-
-  // if (!openState) {
-  //   return null;
-  // }
-
-// NE SERT à RIEN ???
-  if (!openModal){
+  if (!openModal) {
     return null;
   }
   
   return (
-    <div className={useFade ? " popup-container popup-fade" : "popup-container"}>
-      <div className="popup-body">
+    <Component fadeanimduration={fadeanimduration} className={"popup-container"} style={myPopupContainerStyle}>
+      <div className="popup-body" style={myPopupBodyStyle}>
       <h2>{text}</h2>
-      <button onClick={closePopup} className="popClosebutton">XX</button>
+      <button onClick={closePopup} className="popClosebutton" style={myPopupCloseButtonStyle}>XX</button>
       </div>
-    </div>
+    </Component>
   );
 };
 

@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import DatePickerComponent from "../../components/DatePickerComponent/DatePickerComponent";
 import { saveUserReducer } from "../../redux/reducer";
 import { useDispatch } from "react-redux";
-// import { PopUpModalComponent } from "react-simplemodal-component";
-import PopUpModalComponent from "../../components/PopUpComponent/PopUpComponent";
+import { PopUpModalComponent } from "react-simplemodal-component";
+// import PopUpModalComponent from "../../components/PopUpComponent/PopUpComponent";
 import { validName, validZipCode } from "../../utils/regex";
 
 const CreateEmployee = () => {  
@@ -137,11 +137,17 @@ const CreateEmployee = () => {
                         onChange={(e) => handleChange('department', e.value)}
                     />
                 </form>
-                <button 
-                onClick={() => saveEmployee()}
-                className="saveButton">Save</button>
+                <button onClick={() => saveEmployee()} className="saveButton">Save</button>
                 <div>
-                    {openModal ? <PopUpModalComponent useFade={true} openModal={openModal} text={modalText} closePopup={() => setOpenModal(false)} /> : null}
+                    {<PopUpModalComponent
+                    myPopupBodyStyle={{borderRadius: "10px", backgroundColor: 'rgba(220, 220, 220, 0.8)',}}
+                    myPopupContainerStyle={{backgroundColor: "rgba(40, 40, 40, 0.5)"}}
+                    myPopupCloseButtonStyle={{backgroundColor: "rgba(255, 255, 255, 1)", borderRadius: "50px", position:"absolute", right: "-10px", top:"-10px"}}
+                    fadeanimduration="1s"
+                    openModal={openModal}
+                    text={modalText}
+                    closePopup={() => setOpenModal(false)}
+                    />}
                 </div>
             </div>
         </>
