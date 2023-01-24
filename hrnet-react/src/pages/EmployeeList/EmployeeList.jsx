@@ -19,8 +19,8 @@ const EmployeeList = () => {
         <div id="employee-div" className="containerEmployeeList" >
             <h2>Current Employees</h2>
             <DataTableComp data={usersInfos.saveUserReducer.users}/>
-            <Link to={"/"} className='homeButton'>Home</Link>
-            <Link to={"/"} className='resetButton' onClick={resetData}>Reset</Link>
+            <Link to={"/"} className='homeButton linkClass'>Home</Link>
+            <Link to={"/"} className='resetButton linkClass' onClick={resetData}>Reset</Link>
         </ div>
     )
 }

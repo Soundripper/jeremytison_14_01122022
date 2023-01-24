@@ -29,6 +29,18 @@ const DataTableComp = (props) => {
         },
     };
 
+    const autoSizeAll = useCallback((skipHeader) => {
+        const allColumnIds = [];
+        gridRef.current.columnApi.getColumns().forEach((column) => {
+          allColumnIds.push(column.getId());
+        });
+        gridRef.current.columnApi.autoSizeColumns(allColumnIds, skipHeader);
+    }, []);
+
+    const sizeToFit = useCallback(() => {
+    gridRef.current.api.sizeColumnsToFit();
+    }, []);
+
     const gridStyle = {height: '100%', width: '100%'};
 
     const gridRef = useRef();
@@ -61,6 +73,8 @@ const DataTableComp = (props) => {
                     placeholder="Filter..."
                     onInput={() => onFilterTextBoxChanged()}
                 />
+                <button className="dataTableButton" onClick={() => autoSizeAll(true)}>Auto-Size</button>
+                <button className="dataTableButton" onClick={sizeToFit}>Size to Fit</button>
             </div>
 
             <div className="ag-theme-alpine" style={gridStyle}>

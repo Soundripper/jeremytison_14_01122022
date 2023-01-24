@@ -59,10 +59,11 @@ const CreateEmployee = () => {
                 <h1>HRnet</h1>
             </div>
             <div className="container">
-                <Link to={"/employee-list"}>View Current Employees</Link>
-                <h2>Create Employee</h2>
+                <Link className="linkClass" to={"/employee-list"}>View Current Employees</Link>
+                <h3>Create Employee</h3>
                 <form action="#" id="create-employee">
                     <InputField 
+                        className="inputField"
                         type="text"
                         value={inputValue.firstName}
                         label="First Name"
@@ -72,6 +73,7 @@ const CreateEmployee = () => {
                     </InputField>
                     
                     <InputField 
+                        className="inputField"
                         type="text"
                         value={inputValue.lastName}
                         label="Last Name"
