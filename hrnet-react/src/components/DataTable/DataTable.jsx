@@ -23,7 +23,7 @@ const DataTableComp = (props) => {
         flex:1,
         resizable: true,
         sortable: true,
-        comparator: (valueA , valueB , nodeA , nodeB , isDescending ) => {
+        comparator: (valueA , valueB) => {
         var res = valueA === valueB ? 0 : valueA > valueB ? 1 : -1;
         return res;
         },
@@ -48,13 +48,13 @@ const DataTableComp = (props) => {
     const onPageSizeChanged = useCallback(() => {
         var value = (document.getElementById('page-size')).value ;
         gridRef.current.api.paginationSetPageSize(Number(value));
-      }, []);
+    }, []);
     
     const onFilterTextBoxChanged = useCallback(() => {
         gridRef.current.api.setQuickFilter(
           (document.getElementById('filter-text-box')).value
         );
-      }, []);
+    }, []);
 
     return (
         <>
@@ -86,6 +86,7 @@ const DataTableComp = (props) => {
                     pagination={true}
                     animateRows={true}
                     paginationPageSize={10}
+                    domLayout='autoHeight'
                 />
             </div>
         </>
