@@ -141,7 +141,7 @@ const CreateEmployee = () => {
                 </form>
                 <button onClick={() => saveEmployee()} className="saveButton">Save</button>
                 <div>
-                    {<PopUpModalComponent
+                    <PopUpModalComponent
                     myPopupBodyStyle={{borderRadius: "10px", backgroundColor: 'rgba(220, 220, 220, 0.8)',}}
                     myPopupContainerStyle={{backgroundColor: "rgba(40, 40, 40, 0.5)"}}
                     myPopupCloseButtonStyle={{backgroundColor: "rgba(255, 255, 255, 1)", borderRadius: "50px", position:"absolute", right: "-10px", top:"-10px"}}
@@ -149,7 +149,7 @@ const CreateEmployee = () => {
                     openModal={openModal}
                     text={modalText}
                     closePopup={() => setOpenModal(false)}
-                    />}
+                    />
                 </div>
             </div>
         </>

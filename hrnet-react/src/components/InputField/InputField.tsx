@@ -1,5 +1,4 @@
 import "../../App.css"
-// import { useEffect } from "react"
 
 const InputField = (props:any) => {
 

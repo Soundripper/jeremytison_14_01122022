@@ -8,7 +8,6 @@
   justify-content: center;
 }
 
-/* App CSS */
 .container {
   display: flex;
   flex-direction: column;
@@ -58,6 +57,9 @@ label, p.label, div.label {
 .react-date-picker{
   width: 207px;
 }
+.react-date-picker__inputGroup {
+  background-color: white;
+}
 .react-date-picker__calendar--open{
   position: absolute
 }
@@ -84,11 +86,6 @@ label, p.label, div.label {
 .homeButton{
   margin-top : 20px;
 }
-/* .saveButton{
-  margin-top : 20px;
-  margin-bottom: 30px;
-  cursor: pointer;
-} */
 .resetButton{
   margin-top : 20px;
 }
