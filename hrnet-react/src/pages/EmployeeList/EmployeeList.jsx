@@ -8,19 +8,19 @@ import { useDispatch } from "react-redux";
 
 const EmployeeList = () => {
     const dispatch = useDispatch();
+
     const usersInfos = useSelector(selectUser => selectUser);
-    console.log(usersInfos);
 
     const resetData = () => {
         dispatch(resetUsersData());
     }
 
     return (
-        <div className="containerEmployeeList" >
+        <div className="containerEmployeeList">
             <h2>Current Employees</h2>
             <DataTableComp data={usersInfos.saveUserReducer.users}/>
-            <Link to={"/"} className='homeButton linkClass'>Home</Link>
-            <Link to={"/"} className='resetButton linkClass' onClick={resetData}>Reset</Link>
+            <Link to={"/"} className='linkClass'>Home</Link>
+            <Link to={"/"} className='linkClass' onClick={resetData}>Reset</Link>
         </ div>
     )
 }

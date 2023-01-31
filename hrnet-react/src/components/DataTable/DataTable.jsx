@@ -20,7 +20,7 @@ const DataTableComp = (props) => {
 
     const defaultColDef = {
         filter: false,
-        flex:1,
+        flex:0,
         resizable: true,
         sortable: true,
         comparator: (valueA , valueB) => {

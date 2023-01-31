@@ -36,10 +36,6 @@
   margin: 30px;
 }
 
-.DataTableComp{
-  /* width:100%; */
-}
-
 .dataTable-header{
   margin-bottom: 10px;
 }
@@ -85,15 +81,8 @@ label, p.label, div.label {
   cursor: pointer;
 }
 .linkClass:hover, .saveButton:hover{
-  border: 1px solid rgba(150, 150, 150, 0.5);
   background-color:darkcyan;
   color: white;
-}
-.homeButton{
-  margin-top : 20px;
-}
-.resetButton{
-  margin-top : 20px;
 }
 .filterField{
   margin-left: 20px;

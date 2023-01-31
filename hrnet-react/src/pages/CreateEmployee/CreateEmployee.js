@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import InputField from "../../components/InputField/InputField";
 import SelectField from "../../components/SelectField/SelectField";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DatePickerComponent from "../../components/DatePickerComponent/DatePickerComponent";
 import { saveUserReducer } from "../../redux/reducer";
 import { useDispatch } from "react-redux";
 import { PopUpModalComponent } from "react-simplemodal-component";
-// import PopUpModalComponent from "../../components/PopUpComponent/PopUpComponent";
 import { validName, validZipCode } from "../../utils/regex";
 
 const CreateEmployee = () => {  
@@ -16,16 +15,11 @@ const CreateEmployee = () => {
     const [openModal, setOpenModal] = useState(false);
     const [modalText, setModalText] = useState("");
     
-    useEffect (() => {
-        console.log({openModal});
-    }, [openModal])
-    
     const saveEmployee = () => {
         console.log("Button save pressed");
         if (!validName.test(inputValue.firstName) || !validName.test(inputValue.lastName) || !validName.test(inputValue.street) || !validName.test(inputValue.city) || (inputValue.state === "") || (inputValue.department === "") || !validZipCode.test(inputValue.zipCode) ) {
             setModalText("Verify your entries!");
             setOpenModal(true);
-            console.log("verify your entries");
             return;
         }
         else {
