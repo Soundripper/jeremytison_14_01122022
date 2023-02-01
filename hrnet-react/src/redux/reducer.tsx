@@ -8,15 +8,15 @@ const userSlice = createSlice({
     }
   ,
   reducers: {
-    saveUserReducer: (state, action) => {
+    saveUserReducer: (state:any, action:any) => {
       state.users.push(action.payload);
     },
-    resetUsersData: (state, action) => {
+    resetUsersData: (state:any, action:any) => {
       state.users = []
     }
   }
 });
 
-export const selectUser = (state) => state.employee;
+export const selectUser = (state:any) => state.employee;
 export const { saveUserReducer, resetUsersData } = userSlice.actions;
 export default userSlice.reducer;
