@@ -29,7 +29,9 @@ const DataTableComp = (props) => {
         },
     };
 
-    const autoSizeAll = useCallback((skipHeader) => {
+    const gridRef = useRef<AgGridReact>();
+
+    const autoSizeAll = useCallback((skipHeader:any) => {
         const allColumnIds = [];
         gridRef.current.columnApi.getColumns().forEach((column) => {
           allColumnIds.push(column.getId());
@@ -38,21 +40,21 @@ const DataTableComp = (props) => {
     }, []);
 
     const sizeToFit = useCallback(() => {
-    gridRef.current.api.sizeColumnsToFit();
+        gridRef.current.api.sizeColumnsToFit();
     }, []);
 
     const gridStyle = {height: '100%', width: '100%'};
 
-    const gridRef = useRef();
+    
 
     const onPageSizeChanged = useCallback(() => {
-        var value = (document.getElementById('page-size')).value ;
+        var value = (document.getElementById('page-size') as HTMLInputElement).value ;
         gridRef.current.api.paginationSetPageSize(Number(value));
     }, []);
     
     const onFilterTextBoxChanged = useCallback(() => {
         gridRef.current.api.setQuickFilter(
-          (document.getElementById('filter-text-box')).value
+          (document.getElementById('filter-text-box') as HTMLInputElement).value
         );
     }, []);
 

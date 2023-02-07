@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react"
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { useSelector } from "react-redux";
-import { resetUsersData } from "../../redux/reducer";
+import { ReducerI, resetUsersData } from "../../redux/reducer";
 import { useDispatch } from "react-redux";
 
 const DataTableCompLazy = lazy(() => import("../../components/DataTable/DataTable"))
@@ -11,7 +11,9 @@ const DataTableCompLazy = lazy(() => import("../../components/DataTable/DataTabl
 const EmployeeList = () => {
     const dispatch = useDispatch();
 
-    const usersInfos = useSelector(selectUser => selectUser);
+    const usersInfos = useSelector((selectUser: ReducerI) => {
+        return selectUser.saveUserReducer.users
+    });
 
     const resetData = () => {
         dispatch(resetUsersData());
@@ -21,7 +23,7 @@ const EmployeeList = () => {
         <div className="containerEmployeeList">
             <h2>Current Employees</h2>
             <Suspense fallback={<h1>Loading....</h1>}>
-                <DataTableCompLazy data={usersInfos.saveUserReducer.users}/>
+                <DataTableCompLazy data={usersInfos}/>
             </Suspense>
             <Link to={"/"} className='linkClass'>Home</Link>
             <Link to={"/"} className='linkClass' onClick={resetData}>Reset</Link>
