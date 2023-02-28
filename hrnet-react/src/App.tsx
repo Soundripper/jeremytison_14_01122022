@@ -6,6 +6,7 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
+    {/* <BrowserRouter basename="/ocr/p14_hrnet/"> */}
       <Routes>
         {routesArray.map((route, index) => {
           return <Route key={index} path={route.path} element={route.component}></Route>
